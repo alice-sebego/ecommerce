@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product.model.dart';
+import '../providers/cartitem.provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -53,6 +55,25 @@ class ProductCard extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.green,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Provider.of<CartProvider>(context, listen: false)
+                      .addItem(product);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Added to cart'),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, 
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text('Add to Cart'),
               ),
             ),
           ],
