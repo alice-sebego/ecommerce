@@ -1,14 +1,17 @@
 # ecommerce
 
-A ecommerce project in order to train with Flutter.
+Create a simple ecommerce project in order to train with Flutter.
 
 ## Getting started
 
 - Run the app
 `flutter run`
 
-- Run the JsonDB : Go to the folder where the product.json is  
+- Run the JsonDB : Go to the folder where the product.json is
+
 `cd lib/services`
+
+then
 
 `json-server --watch product.json`
 

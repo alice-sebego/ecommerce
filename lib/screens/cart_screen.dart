@@ -14,7 +14,26 @@ class CartScreen extends StatelessWidget {
         title: const Text('Cart'),
       ),
       body: cart.items.isEmpty
-          ? const Center(child: Text('Your cart is empty'))
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Your cart is empty'),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed(
+                          '/'); // Assurez-vous que la route '/' mène à votre page d'accueil
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white, 
+                      backgroundColor: Colors.blue, 
+                    ),
+                    child: const Text('Go to Home'),
+                  ),
+                ],
+              ),
+            )
           : ListView.builder(
               itemCount: cart.items.length,
               itemBuilder: (context, index) {
