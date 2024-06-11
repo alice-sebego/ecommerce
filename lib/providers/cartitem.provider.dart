@@ -26,8 +26,30 @@ class CartProvider with ChangeNotifier {
   void updateQuantity(Product product, int quantity) {
     final index = _items.indexWhere((item) => item.product.id == product.id);
     if (index != -1) {
-      _items[index].quantity = quantity;
+      if (quantity > 0) {
+        _items[index].quantity = quantity;
+      } else {
+        removeItem(product);
+      }
       notifyListeners();
+    }
+  }
+
+  void incrementQuantity(Product product) {
+    final index = _items.indexWhere((item) => item.product.id == product.id);
+    if (index != -1) {
+      _items[index].quantity++;
+      notifyListeners();
+    }
+  }
+
+  void decrementQuantity(Product product) {
+    final index = _items.indexWhere((item) => item.product.id == product.id);
+    if (index != -1 && _items[index].quantity > 1) {
+      _items[index].quantity--;
+      notifyListeners();
+    } else if (index != -1 && _items[index].quantity == 1) {
+      removeItem(product);
     }
   }
 

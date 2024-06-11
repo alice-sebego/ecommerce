@@ -24,11 +24,41 @@ class CartScreen extends StatelessWidget {
                       ? Image.network(item.product.imageUrl)
                       : const Icon(Icons.image_not_supported),
                   title: Text(item.product.name),
-                  subtitle: Text('Quantity: ${item.quantity}'),
-                  trailing: Text('\$${item.product.price * item.quantity}'),
-                  onTap: () {
-                    // Navigate to product details or update quantity
-                  },
+                  subtitle: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.remove),
+                        onPressed: () {
+                          cart.decrementQuantity(item.product);
+                        },
+                      ),
+                      Text('Quantity: ${item.quantity}'),
+                      IconButton(
+                        icon: const Icon(Icons.add),
+                        onPressed: () {
+                          cart.incrementQuantity(item.product);
+                        },
+                      ),
+                    ],
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('\$${item.product.price * item.quantity}'),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        color: Colors.red,
+                        onPressed: () {
+                          cart.removeItem(item.product);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Removed from cart'),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
