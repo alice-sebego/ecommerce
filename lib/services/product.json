@@ -1,0 +1,40 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Smartphone",
+      "description": "A high-end smartphone with a great camera",
+      "price": 699.99,
+      "imageUrl": ""
+    },
+    {
+      "id": 2,
+      "name": "Laptop",
+      "description": "A powerful laptop for professionals",
+      "price": 1299.99,
+      "imageUrl": ""
+    },
+    {
+      "id": 3,
+      "name": "Headphones",
+      "description": "Noise-cancelling headphones with superior sound quality",
+      "price": 199.99,
+      "imageUrl": ""
+    },
+    {
+      "id": 4,
+      "name": "Smartwatch",
+      "description": "A smartwatch with fitness tracking and notifications",
+      "price": 149.99,
+      "imageUrl": ""
+    },
+    {
+      "id": 5,
+      "name": "Camera",
+      "description": "A DSLR camera for professional photography",
+      "price": 999.99,
+      "imageUrl": ""
+    }
+  ],
+  "orders": []
+}
