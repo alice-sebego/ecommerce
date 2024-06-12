@@ -16,7 +16,7 @@ class Product {
   // deserialisation
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
+      id: json['id'] is int ? json['id'] : int.parse(json['id']),
       name: json['name'],
       description: json['description'],
       price: json['price'],

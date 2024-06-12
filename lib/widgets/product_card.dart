@@ -25,7 +25,12 @@ class ProductCard extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: product.imageUrl.isNotEmpty
-                  ? Image.network(product.imageUrl, fit: BoxFit.contain)
+                  ? Image.network(
+                      product.imageUrl,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    )
                   : Container(
                       width: double.infinity,
                       color: Colors.grey,
@@ -70,7 +75,7 @@ class ProductCard extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white, 
+                  foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
                 ),
                 child: const Text('Add to Cart'),

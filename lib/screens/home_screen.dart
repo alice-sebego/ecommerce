@@ -4,6 +4,7 @@ import '../widgets/product_card.dart';
 import 'package:provider/provider.dart';
 import '../providers/product.provider.dart';
 import 'cart_screen.dart';
+import '../widgets/welcome.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Products'),
@@ -39,32 +42,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Consumer<ProductProvider>(
-        builder: (context, productProvider, child) {
-          if (productProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (productProvider.errorMessage.isNotEmpty) {
-            return Center(
-                child: Text('Error: ${productProvider.errorMessage}'));
-          } else if (productProvider.products.isEmpty) {
-            return const Center(child: Text('No products available'));
-          } else {
-            return GridView.builder(
+     body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const FadeAnimation(
+              child: Text(
+                'Welcome',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            GridView.builder(
+              padding: const EdgeInsets.all(10),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // 2 produits par ligne
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 2 / 3, // Aspect ratio pour les cartes
               ),
-              padding: const EdgeInsets.all(10),
               itemCount: productProvider.products.length,
-              itemBuilder: (context, index) {
-                final product = productProvider.products[index];
-                return ProductCard(product: product);
-              },
-            );
-          }
-        },
+              itemBuilder: (ctx, i) => ProductCard(
+                product: productProvider.products[i],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
