@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cartitem.provider.dart';
+import '../widgets/iconcart_animation.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -18,6 +19,10 @@ class CartScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const ScaleAnimation(
+                    child:
+                        Icon(Icons.shopping_cart, size: 50, color: Colors.blue),
+                  ),
                   const Text('Your cart is empty'),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -26,8 +31,8 @@ class CartScreen extends StatelessWidget {
                           '/'); // Assurez-vous que la route '/' mène à votre page d'accueil
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, 
-                      backgroundColor: Colors.blue, 
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
                     ),
                     child: const Text('Go to Home'),
                   ),
